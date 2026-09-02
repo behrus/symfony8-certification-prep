@@ -1,5 +1,16 @@
 
 services:
+  webapp:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - DATABASE_URL=postgresql://app:!ChangeMe!@database:5432/app?serverVersion=16&charset=utf8
+    depends_on:
+      - database
 ###> doctrine/doctrine-bundle ###
   database:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
