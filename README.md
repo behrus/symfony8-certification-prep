@@ -82,3 +82,4 @@ You should see the default Symfony welcome page. All your code changes in `src/`
 
 ---
 *Created and maintained by a passionate PHP & Symfony Developer striving for architectural excellence.*
+
