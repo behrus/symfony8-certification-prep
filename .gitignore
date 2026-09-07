@@ -66,3 +66,9 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> jetbrains/phpstorm ###
+.idea/
+*.iml
+*.xml
+###< jetbrains/phpstorm ###
