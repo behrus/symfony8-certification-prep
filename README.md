@@ -1,9 +1,7 @@
 # 🚀 Symfony 8 Certified Developer – Preparation Sandbox
 
-Status-Badge:
 [![Status: In Progress](https://img.shields.io/static/v1?label=Status&message=In%20Progress&color=orange&style=flat-square&logo=github&logoColor=white)](https://github.com/behrus)
 
-Symfony-Badge:
 [![Symfony: 8.1](https://img.shields.io/static/v1?label=Symfony&message=8.1&color=6170f4&style=flat-square&logo=symfony&logoColor=white)](https://symfony.com)
 
 
