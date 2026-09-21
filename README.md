@@ -1,7 +1,11 @@
 # 🚀 Symfony 8 Certified Developer – Preparation Sandbox
 
-[![Status: In Progress](https://shields.io)](https://github.com?logo=github-action)
-[![Symfony: 8.1](https://shields.io)](https://symfony.com)
+Status-Badge:
+[![Status: In Progress](https://img.shields.io/static/v1?label=Status&message=In%20Progress&color=orange&style=flat-square&logo=github&logoColor=white)](https://github.com/behrus)
+
+Symfony-Badge:
+[![Symfony: 8.1](https://img.shields.io/static/v1?label=Symfony&message=8.1&color=6170f4&style=flat-square&logo=symfony&logoColor=white)](https://symfony.com)
+
 
 > 💡 **Please note:** This repository is my active training ground for the upcoming Symfony 8 certification. Since I am working on this **alongside my full-time job**, updates occur in focused bursts rather than daily commits. It is an evolving sandbox designed to systematically test code examples, custom compiler passes, and framework edge cases.
 
