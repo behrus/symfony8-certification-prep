@@ -1,44 +1,46 @@
 # 🚀 Symfony 8 Certified Developer – Preparation Sandbox
 
-Welcome to my active preparation repository for the official **Symfony Certified Developer** exam.
-This sandbox is built on **Ubuntu 24.04** using **PHP 8.3+** and **Symfony 8.x** inside a fully containerized environment.
+[![Status: In Progress](https://shields.io)](https://github.com)
+[![Symfony: 8.1](https://shields.io)](https://symfony.com)
 
-The goal of this repository is to deep-dive into the framework's architecture, master modern PHP attributes, practice core components, and track my daily progress through the official exam topics.
+> 💡 **Please note:** This repository is my active training ground for the upcoming Symfony 8 certification. Since I am working on this **alongside my full-time job**, updates occur in focused bursts rather than daily commits. It is an evolving sandbox designed to systematically test code examples, custom compiler passes, and framework edge cases.
+
+Welcome to the active preparation repository for the official **Symfony Certified Developer** exam.
+This sandbox is built on **Ubuntu 24.04** using **PHP 8.4+** and **Symfony 8.x** inside a fully containerized environment powered by **FrankenPHP**.
+
+The goal of this repository is to deep-dive into the framework's architecture, master modern PHP attributes, practice core enterprise components, and track my progress through the core exam topics.
 
 ---
 
-## 📅 3-Week Sprint & Progress Tracker
-Based on the 14 core topics from SFCE Learning, mapped to the official certification guide.
+## 📅 6-Week Certification Master Plan & Progress Tracker
+A structured, work-life-balanced preparation roadmap tailored for experienced Senior Developers studying alongside full-time employment.
 
-### 🏛️ Section 1: Architecture & Core Lifecycles
-- [ ] **Topic 1: Architecture** (HttpKernel, Request/Response lifecycle, HTTP Cache)
-- [ ] **Topic 2: Dependency Injection** (Service Container, Autowiring, Compiler Passes, Service Locators)
-- [ ] **Topic 3: EventDispatcher** (Event Listeners vs. Subscribers, Core Kernel Events)
+### 🏛️ Weeks 1 & 2: Core Foundations & Infrastructure
+- [x] **Architecture & HttpKernel Lifecycle** (Request/Response lifecycle, Short-circuiting, SOLID patterns)
+- [ ] **Dependency Injection & Container Compilation** (Autowiring, Compiler Passes, Service Locators, Custom Tags)
+- [ ] **EventDispatcher & Core Events** (Listeners, Subscribers, Priority, Event Propagation)
 
-### 🛠️ Section 2: HTTP & Application Logic
-- [ ] **Topic 4: Routing** (Attributes, Route matching, Parameters, Requirements)
-- [ ] **Topic 5: Controller** (Argument resolvers, Injections, AbstractController utilities)
-- [ ] **Topic 6: Configuration** (Environment variables, Parameters, Bundle configuration)
+### ⚙️ Weeks 3 & 4: HTTP & Application Logic
+- [ ] **Advanced Routing & Edge Cases** (Attributes, Route matching conditions, Localized routing)
+- [ ] **Controller Utility & Argument Resolvers** (Value resolvers, Injections, AbstractController utilities)
+- [ ] **Configuration, ParameterBags & Secrets System** (Environment variables, Vault, Service parameters)
 
-### 🔐 Section 3: Security & Enterprise Features
-- [ ] **Topic 7: Security** (Authenticators, Passports/Badges, Custom Voters, Role hierarchies)
-- [ ] **Topic 8: Messenger & Workflow** (Busses, Transport, Middleware, Envelopes/Stamps)
-- [ ] **Topic 9: Cache** (Cache pools, Tagging, Adapters)
+### 🔐 Week 5: Deep-Dive Enterprise Features
+- [ ] **Security** (Authenticators, Passport/Badge-System, Custom Voters, Role hierarchies)
+- [ ] **Messenger, Workflow, Cache-Pools & Serializer** (Buses, Transports, Async workers, Serialization contexts)
 
-### 📝 Section 4: Data, Forms & Tooling
-- [ ] **Topic 10: Form & Validation** (Form types, Data mappers, Validation constraints, CSRF)
-- [ ] **Topic 11: Internationalization (i18n)** (Translations, Locales, Catalogue)
-- [ ] **Topic 12: Automated Tests** (WebTestCase, Crawler, Profiler integration in tests)
-- [ ] **Topic 13: Console** (Custom commands, Input/Output options)
-- [ ] **Topic 14: Serializer & Twig** (Normalization, Encoding, Twig extensions)
+### 🔍 Week 6: Testing, Tooling & Polish
+- [ ] **WebTestCase, Crawler & Profiler Tests** (Integration testing, HTTP client assertions)
+- [ ] **Console, CLI Flags & Config Structures** (Custom commands, Signal handling, memorizing critical defaults)
+- [ ] **Daily Mock-Exam Simulations** (Time management and focus training)
 
 ---
 
 ## 💻 Tech Stack & Environment
-* **OS:** Ubuntu 24.04 LTS
-* **Engine:** PHP 8.3+ (Inside FrankenPHP Docker Container)
-* **Framework:** Symfony 8.x (Webapp Skeleton)
-* **Database:** PostgreSQL (via Docker)
+* **OS:** Ubuntu 24.04 LTS (Host machine)
+* **Engine:** PHP 8.4+ (Inside an automated FrankenPHP Docker Container)
+* **Framework:** Symfony 8.x (Skeleton build)
+* **Database:** PostgreSQL 16 (via Docker)
 * **IDE:** JetBrains PhpStorm
 
 ---
@@ -48,38 +50,44 @@ Based on the 14 core topics from SFCE Learning, mapped to the official certifica
 Follow these steps to get this Symfony 8 Docker sandbox running on your local machine:
 
 ### 1. Prerequisites
-Make sure you have **Docker** and **Docker Compose** installed on your system.
+Make sure you have **Docker** and **Docker Compose** installed on your system. To run commands smoothly without `sudo`, ensure your user is added to the system group:
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/behrus/symfony8-certification-prep.git
+git clone https://github.com
 cd symfony8-certification-prep
 ```
 
 ### 3. Build and Start the Docker Containers
-This command builds your custom FrankenPHP image (including required extensions like `pdo_pgsql`) and starts the PostgreSQL database and mailer in the background:
+This command compiles your custom FrankenPHP image (automatically injecting required system extensions like `pdo_pgsql`) and boots the stack in the background:
 ```bash
 docker compose up -d --build
 ```
 
 ### 4. Install PHP Dependencies
-Since PHP runs inside the container, use `docker compose exec` to run Composer safely without needing PHP installed on your host machine:
+Since PHP runs completely isolated inside the container, execute Composer via the running `web` service wrapper:
 ```bash
-docker compose exec webapp composer install
+docker compose exec web composer install
 ```
 
 ### 5. Initialize the Database
-Create the database inside the container and ensure the schema is validated:
+Create your persistent database structure inside the PostgreSQL cluster and validate your ecosystem setup:
 ```bash
-docker compose exec webapp php bin/console doctrine:database:create
+docker compose exec web php bin/console doctrine:database:create
 ```
 
 ### 6. Access the Application
-Open your browser and navigate to:
-👉 **http://127.0.0.1:8000**
-
-You should see the default Symfony welcome page. All your code changes in `src/` will sync automatically.
+Open your web browser and navigate to:
+👉 **http://localhost**
 
 ---
-*Created and maintained by a passionate PHP & Symfony Developer striving for architectural excellence.*
 
+## 👤 Contact & Professional Profile
+
+* **Name:** Behrouz Heidarzadeh
+* **Role:** Senior Backend Engineer
+* **LinkedIn:** [https://www.linkedin.com/in/behrouz-heidarzadeh-927a87282/]
