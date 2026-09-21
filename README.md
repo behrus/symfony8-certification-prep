@@ -16,7 +16,7 @@ The goal of this repository is to deep-dive into the framework's architecture, m
 A structured, work-life-balanced preparation roadmap tailored for experienced Senior Developers studying alongside full-time employment.
 
 ### 🏛️ Weeks 1 & 2: Core Foundations & Infrastructure
-- [x] **Architecture & HttpKernel Lifecycle** (Request/Response lifecycle, Short-circuiting, SOLID patterns)
+- [ ] **Architecture & HttpKernel Lifecycle** (Request/Response lifecycle, Short-circuiting, SOLID patterns)
 - [ ] **Dependency Injection & Container Compilation** (Autowiring, Compiler Passes, Service Locators, Custom Tags)
 - [ ] **EventDispatcher & Core Events** (Listeners, Subscribers, Priority, Event Propagation)
 
