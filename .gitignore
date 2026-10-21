@@ -1,0 +1,31 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> docker / frankenphp ###
+# Ignoriere die persistenten Docker-Volumes für Caddy-Daten und Configs,
+# falls diese lokal im Projektordner landen sollten
+/.public/
+/caddy_data/
+/caddy_config/
+###< docker / frankenphp ###
+
+###> jetbrains / phpstorm ###
+# Ignoriere IDE-spezifische Einstellungen, die nicht ins Repository gehören
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+###< jetbrains / phpstorm ###
+
+###> OS / System files ###
+.DS_Store
+Thumbs.db

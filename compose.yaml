@@ -1,0 +1,32 @@
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - .:/app
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      SERVER_NAME: :80 # Uses standard HTTP on port 80 for easy local testing.
+      CADDY_SERVER_EXTRA_DIRECTIVES: "root * public/"
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: symfony_db
+      POSTGRES_USER: symfony_user
+      POSTGRES_PASSWORD: symfony_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  caddy_data:
+  caddy_config:
+  db-data:
