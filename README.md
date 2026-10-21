@@ -1,13 +1,9 @@
-### 🚀 Symfony 8 Certified Developer – Preparation Sandbox
+# 🚀 Symfony 8 Certified Developer – Preparation Sandbox
 
-Status-Badge:
-[](https://github.com/behrus/symfony8-certification-prep) 
+**Status:** 🛠️ In Progress  
+**Target:** Symfony 8.1 / PHP 8.4+
 
-Symfony-Badge:
-[](https://symfony.com) 
-
-💡 **Note for Tech-Leads & Recruiters:** This repository is my personal sandbox for the upcoming Symfony 8 certification exam. Working on this alongside my full-time job, so commits happen in focused bursts rather than daily updates. It's used purely to verify framework edge cases, compiler passes, and modern PHP 8.4 features. 
-
+> 💡 **Note for Tech-Leads & Recruiters:** This repository is my personal sandbox for the upcoming Symfony 8 certification exam. Working on this alongside my full-time job, so commits happen in focused bursts rather than daily updates. It's used purely to verify framework edge cases, compiler passes, and modern PHP 8.4 features.
 This sandbox runs on **Ubuntu 24.04** with **PHP 8.4+** and **Symfony 8.x** inside a **FrankenPHP** containerized environment. It serves as a hands-on tracker for digging into framework internals. 
 
 ### 📅 Progress Tracker & Master Plan
