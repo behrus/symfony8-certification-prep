@@ -50,8 +50,18 @@ By pairing this environment priority stack with stable abstractions, Symfony ach
 * The configuration passes a placeholder to delegate implementation: `app: '%env(CACHE_ADAPTER)%'`.
 * **The Outcome:** On your local laptop, Symfony injects a `FilesystemAdapter`. On the cloud server, it seamlessly injects a `RedisAdapter` into *the exact same execution path*. Your business PHP code remains 100% untouched, fully honoring the SOLID principles.
 
----
-*End of Protocol.*
+## 🧠 Exam Flashcards
+- **Question:** What is the exact loading hierarchy of Symfony `.env` files from lowest to highest priority?
+
+  **Answer:** `.env` $\rightarrow$ `.env.local` $\rightarrow$ `.env.{env}` $\rightarrow$ `.env.{env}.local` (highest priority overrides previous ones).
+
+- **Question:** Do values inside a `.env.local` file override actual environment variables set directly in the OS or container environment?
+
+  **Answer:** No. Real environment variables defined in the OS, Docker, or Webserver environment always take absolute precedence over any values in `.env` files.
+
+- **Question:** How does Symfony handle a missing environment variable at runtime if no default value is defined?
+
+  **Answer:** It throws an `EnvNotFoundException` as soon as a component attempts to resolve the missing variable during the request lifecycle.
 
 ---
 

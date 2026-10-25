@@ -1,0 +1,3 @@
+"What is the exact loading hierarchy of Symfony .env files from lowest to highest priority?"	".env -> .env.local -> .env.{env} -> .env.{env}.local (highest priority overrides previous ones)."
+"Do values inside a .env.local file override actual environment variables set directly in the OS or container environment?"	"No. Real environment variables defined in the OS, Docker, or Webserver environment always take absolute precedence over any values in .env files."
+"How does Symfony handle a missing environment variable at runtime if no default value is defined?"	"It throws an EnvNotFoundException as soon as a component attempts to resolve the missing variable during the request lifecycle."

@@ -59,4 +59,45 @@
 * `/var`: The internal temporary workspace for engine logs and compiled cache data. On Linux production or container environments (Docker/FrankenPHP), it strictly requires mandatory write permissions (`chmod`) allocated to the system webserver user account (`www-data`).
 
 ---
+
+
+## 🧠 Exam Flashcards
+- **Question:** How does the Kernel determine the cache directory path in Symfony 8?
+
+  **Answer:** By calling the `Kernel::getCacheDir()` method, which defaults to the `var/cache/{environment}` directory.
+
+- **Question:** What is a 'Service Locator' in the context of the Symfony Architecture components?
+
+  **Answer:** A lightweight PSR-11 container wrapper that provides access to a strictly restricted, pre-defined subset of services to maintain isolation.
+
+- **Question:** What is the purpose of the `container.preload` parameter generated during container compilation?
+
+  **Answer:** It compiles a list of heavily used PHP classes that Opcache should preload into memory when the server starts to eliminate runtime disk I/O.
+
+Look at this architectural container setup utilizing a Service Locator for heavy reporting engines:
+```php
+namespace App\Report;
+use Psr\Container\ContainerInterface;
+
+class ReportManager {
+    public function __construct(private ContainerInterface \$locator) {}
+
+    public function run(string \$type): void {
+        if (\$this->locator->has(\$type)) {
+            \$engine = \$this->locator->get(\$type);
+            \$engine->generate();
+        }
+    }
+}
+```
+- **Question:** True or False: When `ReportManager` is instantiated, all reporting engine services mapped inside the `$locator` container are instantly initialized in memory by Symfony.
+
+  **Answer:** **False.** A Service Locator provides **lazy-loading**. The actual engine service is only instantiated and booted when `$this->locator->get($type)` is explicitly invoked inside the runtime logic.
+
+- **Question:** Which core component of the Symfony framework is structurally responsible for catching unhandled PHP exceptions thrown within a controller and converting them into a valid, user-facing HTTP `Response` object?
+
+  **Answer:** The **`HttpKernel` component** (via the internal dispatching and handling of the **`KernelEvents::EXCEPTION`** event).
+
+--- 
+
 Licensed under the [MIT License](../../LICENSE).

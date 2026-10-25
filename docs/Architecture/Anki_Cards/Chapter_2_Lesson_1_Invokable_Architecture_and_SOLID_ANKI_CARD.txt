@@ -1,0 +1,18 @@
+"What is the structural constraint of an Invokable Controller in Symfony?"	"It must contain exactly one public method named __invoke(), allowing it to act as a single-action controller adhering to the Single Responsibility Principle."
+"Which component is responsible for turning a Route string (like /user/{id}) into a set of controller parameters?"	"The ArgumentResolver component, by using registered ValueResolvers to match request attributes to controller arguments."
+"What is the exact interface that any custom Value Resolver in Symfony 8 must implement?"	"Symfony\Component\HttpKernel\Controller\ValueResolverInterface."
+"Look at this modern Symfony 8 controller declaration:
+
+namespace App\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route('/order/process', name: 'app_order_process', methods: ['POST'])]
+class ProcessOrderAction {
+    public function __invoke(): Response {
+        return new Response('Processed');
+    }
+}
+
+If you want to generate a URL to this invokable controller using the UrlGeneratorInterface or inside a Twig template, what string must you pass as the route target parameter?"	"You must pass the explicit route name 'app_order_process'. Unlike older Symfony versions where you could fallback to the action class or controller syntax (Class::method), modern routing strictly resolves via the registered route name or explicitly defined parameters."
+"True or False: An invokable controller in Symfony is forced to only accept dependencies via action method-injection (argument resolving) and cannot use standard constructor injection."	"False. Invokable controllers are standard services in Symfony. They fully support standard constructor injection for long-lived dependencies (like Services or Repositories) alongside method-injection for request-specific data via Argument Resolvers."

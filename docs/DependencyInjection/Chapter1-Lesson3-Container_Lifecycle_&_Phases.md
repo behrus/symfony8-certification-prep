@@ -14,3 +14,22 @@
 3. **Dumping Phase (`PhpDumper`):**
     * Generates a highly optimized, raw PHP class (`ProjectServiceContainer`) inside the cache directory (`var/cache/`).  [see `DI-L3-PHP-DUMPER`]
     * Eliminates the performance overhead of dynamic reflection lookups during application runtime.
+
+
+## 🧠 Exam Flashcards
+- **Question:** What are the four main phases of the Symfony Container Lifecycle in their precise chronological order?
+
+  **Answer:**
+    1. Compile (Optimization & Optimization Passes)
+    2. Freeze (Locking definitions)
+    3. Cache Generation (Writing PHP files to disk)
+    4. Instantiation (Runtime execution)
+
+- **Question:** Why does Symfony completely remove or inline private services during the container optimization phase?
+
+  **Answer:** To drastically reduce memory usage and speed up service instantiation at runtime by eliminating tracking overhead inside the cached container.
+
+---
+
+
+Licensed under the [MIT License](../../LICENSE).

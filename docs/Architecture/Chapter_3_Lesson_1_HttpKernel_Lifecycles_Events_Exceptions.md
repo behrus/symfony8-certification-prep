@@ -38,5 +38,47 @@ When `$kernel->handle($request)` initiates, the application triggers a sequentia
 * **Event Dispatcher Priorities:** Configured as integer markers. **Higher positive numbers execute first**. To enforce a execution sequence as the absolute final step, use high negative values (e.g., `-255`).
 * **Sub-Request Isolation:** Inside a listener method, always query **`$event->isMainRequest()`** to check whether you are handling the primary browser entry or an internal loop (Symfony versions prior to 5.2 used `isMasterRequest()`).
 
+## 🧠 Exam Flashcards
+- **Question:** Which design pattern does the Symfony `HttpKernel` component primarily implement to handle a Request?
+
+  **Answer:** The Mediator pattern (via the `EventDispatcher`) to decouple the Request/Response lifecycle from specific controller logic.
+
+- **Question:** What is the precise structural difference between a 'Main Request' and a 'Sub Request' in Symfony 8?
+
+  **Answer:** A Main Request is the initial HTTP request entering the application. A Sub Request is triggered internally (e.g., via forwarding or rendering fragments) and does not restart the entire PHP server lifecycle.
+
+- **Question:** What happens if a listener on the `kernel.request` event sets a `Response` object on the event?
+
+  **Answer:** The `HttpKernel` stops event propagation immediately, controller resolution is skipped, and it proceeds directly to the `kernel.response` phase.
+
+- **Question:** What is the primary technical purpose of the `kernel.controller_arguments` event?
+
+  **Answer:** It allows listeners to inspect, modify, or completely swap the arguments (resolved via Value Resolvers) before they are passed into the controller.
+
+Look at this Event Subscriber implementation targeting the `KernelEvents::REQUEST` pipeline:
+```php
+namespace App\EventSubscriber;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
+
+class EarlyMaintenanceSubscriber implements EventSubscriberInterface {
+    public static function getSubscribedEvents(): array {
+        return [KernelEvents::REQUEST => ['onKernelRequest', 512]];
+    }
+
+    public function onKernelRequest(RequestEvent \$event): void {
+        // Condition checking
+    }
+}
+```
+- **Question:** If this subscriber detects a maintenance state and needs to immediately return a custom maintenance HTML page to the browser without letting subsequent listeners or the controller execute, which method must be called on the `$event` object?
+
+  **Answer:** You must call **`$event->setResponse(new Response('Maintenance Mode'));`**. Calling `setResponse()` stops further propagation of the event implicitly and prevents the `HttpKernel` from executing the controller, jumping directly to the response deployment phase.
+
+- **Question:** During the `HttpKernel` lifecycle, if a listener assigned to the `KernelEvents::CONTROLLER` event replaces the controller completely, what specific PHP type validation does Symfony enforce on the object passed into `$event->setController()`?
+
+  **Answer:** Symfony enforces that the value must be a valid PHP **`callable`** (an anonymous function, an instance of an invokable class, or an array mapping `[$instance, 'method']`). If a non-callable is passed, a `TypeError` or `InvalidArgumentException` is thrown immediately.
+
 ---
 Licensed under the [MIT License](../../LICENSE).

@@ -37,3 +37,40 @@ If a private service (`public: false`) or an interface alias is **not** actively
 
 * **Behavior:** Symfony silently removes these unused definitions from the DI container (Dead Code Elimination).
 * **Effect:** The `cache:clear` command succeeds without errors, but running `debug:container <Service-ID>` will fail with a critical error because the ID no longer exists in the compiled container. The entire DI chain is only preserved once it is linked to an active entry point like our command.
+
+## 🧠 Exam Flashcards
+- **Question:** What happens if a service alias is defined via the `#[AsAlias]` attribute on a class, but a different alias for the same interface is explicitly set in `services.yaml`?
+
+  **Answer:** The YAML configuration takes precedence and silently overrides the PHP class attribute.
+
+- **Question:** When using the `#[Target('invoice_pdf')]` attribute to resolve an ambiguous interface implementation, what must the target class declare?
+
+  **Answer:** The target class must explicitly be assigned a matching string alias using the attribute `#[AsAlias(id: 'invoice_pdf')]`. Otherwise, compilation fails with a `DefinitionErrorException`.
+
+- **Question:** Why might a correctly configured private service disappear from `debug:container <Service-ID>` even though `cache:clear` runs without errors?
+
+  **Answer:** The `RemoveUnusedDefinitionsPass` removed it. If a private service is not injected into any active framework entry point (like a Controller or Command), Symfony purges it from the compiled container during optimization.
+
+- **Question:** What three configuration keys are applied by default under the `_defaults:` block in a standard Symfony `services.yaml`?
+
+  **Answer:** `autowire: true` (resolves dependencies via reflection), `autoconfigure: true` (automatically adds tags based on class hierarchy), and `public: false` (makes services private by default).
+
+Look at this service class constructor utilizing a core DI attribute:
+```php
+namespace App\Manager;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Target;
+
+class OrderManager {
+    public function __construct(
+        #[Target('localLogger')]
+        private LoggerInterface \$appLogger
+    ) {}
+}
+```
+- **Question:** What determines whether this dependency autowires successfully: the attribute string argument `'localLogger'` or the native PHP variable name `$appLogger`?
+
+  **Answer:** The attribute string **`'localLogger'`** determines success. **Reason:** The `#[Target]` attribute explicitly instructs the compiler pass to look for a registered service or alias with the exact ID `localLogger`. Once `#[Target]` is explicitly defined, the actual variable name (`$appLogger`) is completely ignored by the container's dependency resolution mechanics.
+
+---
+Licensed under the [MIT License](../../LICENSE).

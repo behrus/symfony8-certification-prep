@@ -1,0 +1,2 @@
+"What are the four main phases of the Symfony Container Lifecycle in their precise chronological order?"	"1. Compile (Optimization & Optimization Passes) -> 2. Freeze (Locking definitions) -> 3. Cache Generation (Writing PHP files to disk) -> 4. Instantiation (Runtime execution)"
+"Why does Symfony completely remove or inline private services during the container optimization phase?"	"To drastically reduce memory usage and speed up service instantiation at runtime by eliminating tracking overhead inside the cached container."

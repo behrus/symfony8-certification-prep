@@ -26,8 +26,49 @@
 
 ---
 
-## 3. Framework Licensing
-* **MIT License Standards:** The core Symfony Framework, along with its official Flex recipe database, is released under the highly permissive **MIT License**. This explicitly permits free, closed-source commercial utilization without any legal obligation to open-source your unique business code.
+## 🧠 Exam Flashcards
+
+Given the standard entry point of a modern Symfony 8 application running with Symfony Flex:
+```php
+// public/index.php
+use App\Kernel;
+
+require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
+
+return static function (array \$context) {
+    return new Kernel(\$context['APP_ENV'], (bool) \$context['APP_DEBUG']);
+};
+```
+- **Question:** Where are the standard lifecycle methods `$kernel->handle($request)->send();` executed, since they are no longer visible in `public/index.php`?
+
+  **Answer:** They are executed internally by the **Symfony Runtime Component** inside **`vendor/autoload_runtime.php`**. The application bootstrap returns a closure, which is intercepted by the configuration runner (e.g., `SymfonyRuntime`) that automatically manages Request creation, Kernel handling, and sending the Response back to the server buffer.
 
 ---
+
+Look at this controller snippet attempting to read a raw JSON payload from an incoming POST request:
+```php
+namespace App\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class ApiController {
+    public function handle(Request \$request): Response {
+        // Line to fetch raw body content
+        \$content = \$request->getContent();
+    }
+}
+```
+- **Question:** True or False: If you call `$request->getContent(true)` (passing `true` as the first argument), Symfony will return a PHP resource stream instead of a string, which is highly optimized for memory when handling large JSON payloads.
+
+  **Answer:** **True.** Passing `true` to `$request->getContent()` returns a **PHP resource pointer (stream)** instead of loading the entire payload into a PHP string variable, which complies with memory-efficiency standards for large payloads.
+
+---
+
+- **Question:** During a Symfony Flex recipe installation, a bundle requires configuration injection into `config/packages/`. What is the exact name and format of the file that a custom Flex recipe uses internally to define these automated framework configurations and file-copy tasks?
+
+  **Answer:** The **`manifest.json`** file, which resides within the specific Flex recipe repository structure to map targets, configuration files, and environment variable defaults.
+
+---
+
+
 Licensed under the [MIT License](../../LICENSE).
