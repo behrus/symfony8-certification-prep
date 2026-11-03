@@ -89,7 +89,7 @@ During the processing of an HTTP request, the application crashes inside a contr
 * [ ] **C)** The `kernel.view` event is triggered because the controller failed to return a valid Response object.
 * [x] **D) If a custom listener throws a *new* exception *inside* the `kernel.exception` cycle, Symfony cuts off propagation and bubbles up a raw PHP primitive error.**
 
-> **💡 Exam Fact:** Uncaught errors immediately dispatch `kernel.exception`. The framework handles this via an isolated **Sub-Request** to render an error page. However, if your error-handling code *also* crashes, Symfony halts event processing to prevent an infinite recursive loop trap, resulting in a **raw PHP primitive error**. Also note that `kernel.terminate` is *never* reached if a fatal crash occurs mid-flight.
+> **💡 Exam Fact:** Uncaught errors immediately dispatch `kernel.exception`. The framework handles this via an isolated **Sub-Request** to render an error page. However, if your error-handling code *also* crashes, the exception from that listener is not caught again and propagates out of the kernel (see `HttpKernel::handleThrowable()`), so no error page is rendered. Also note that `kernel.terminate` is *never* reached if a fatal crash occurs mid-flight.
 
 ---
 

@@ -1,1 +1,1 @@
-"What does extra.symfony.require in composer.json do with Symfony Flex?"	"Flex uses it as the version constraint for symfony/* packages (for example 8.1.*) and replaces unbounded constraints with it. Reason: all Symfony packages must stay on the same minor version."
+"What does extra.symfony.require in composer.json do with Symfony Flex?"	"Flex uses it as the version constraint for symfony/* packages (for example 8.0.*) and replaces unbounded constraints with it. Reason: all Symfony packages must stay on the same minor version."

@@ -193,9 +193,9 @@ In your sandbox, your high-level application code (the `SpyController`) does not
 ## 🧠 Exam Flashcards
 - **Question:** What is the structural constraint of an Invokable Controller in Symfony?
 
-  **Answer:** It must contain exactly one public method named `__invoke()`, allowing it to act as a single-action controller adhering to the Single Responsibility Principle.
+  **Answer:** It must have a public `__invoke()` method, which makes it a single-action controller; by convention it contains only that method, in line with the Single Responsibility Principle.
 
-- **Question:** Which component is responsible for turning a Route string (like `/user/{id}`) into a set of controller parameters?
+- **Question:** Which component maps the request attributes (like the route parameter `{id}`) to the arguments of the controller method?
 
   **Answer:** The `ArgumentResolver` component, by using registered ValueResolvers to match request attributes to controller arguments.
 
@@ -220,7 +220,7 @@ class ProcessOrderAction {
 ```
 - **Question:** If you want to generate a URL to this invokable controller using the `UrlGeneratorInterface` or inside a Twig template, what string must you pass as the route target parameter?
 
-  **Answer:** You must pass the explicit route name **`'app_order_process'`**. Unlike older Symfony versions where you could fallback to the action class or controller syntax (`Class::method`), modern routing strictly resolves via the registered route name or explicitly defined parameters.
+  **Answer:** You must pass the explicit route name **`'app_order_process'`**. The URL generator works with route names only.
 
 
 - **Question:** True or False: An invokable controller in Symfony is forced to only accept dependencies via action method-injection (argument resolving) and cannot use standard constructor injection.

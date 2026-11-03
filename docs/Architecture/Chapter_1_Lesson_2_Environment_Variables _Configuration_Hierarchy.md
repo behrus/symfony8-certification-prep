@@ -38,7 +38,7 @@ When Symfony encounters an environmental parameter placeholder (e.g., `%env(CACH
 * **Priority 1:** Real System Environment Variables (OS / Container Environment)
 * **Priority 2:** `.env.$APP_ENV.local` (e.g., `.env.prod.local` - Server-specific overrides)
 * **Priority 3:** `.env.$APP_ENV` (e.g., `.env.prod` - Target environment blueprint, in Git)
-* **Priority 4:** `.env.local` (Developer's local machine overrides)
+* **Priority 4:** `.env.local` (Developer's local machine overrides; not loaded in the `test` environment)
 * **Priority 5:** `.env` (Global team baselines, in Git)
 
 ---
@@ -53,7 +53,7 @@ By pairing this environment priority stack with stable abstractions, Symfony ach
 ## 🧠 Exam Flashcards
 - **Question:** What is the exact loading hierarchy of Symfony `.env` files from lowest to highest priority?
 
-  **Answer:** `.env` $\rightarrow$ `.env.local` $\rightarrow$ `.env.{env}` $\rightarrow$ `.env.{env}.local` (highest priority overrides previous ones).
+  **Answer:** `.env` $\rightarrow$ `.env.local` $\rightarrow$ `.env.{env}` $\rightarrow$ `.env.{env}.local` (highest priority overrides previous ones). Exception: `.env.local` is not loaded in the `test` environment.
 
 - **Question:** Do values inside a `.env.local` file override actual environment variables set directly in the OS or container environment?
 

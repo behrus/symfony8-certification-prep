@@ -1,6 +1,6 @@
 "How does the Kernel determine the cache directory path in Symfony 8?"	"By calling the Kernel::getCacheDir() method, which defaults to the var/cache/{environment} directory."
 "What is a 'Service Locator' in the context of the Symfony Architecture components?"	"A lightweight PSR-11 container wrapper that provides access to a strictly restricted, pre-defined subset of services to maintain isolation."
-"What is the purpose of the container.preload parameter generated during container compilation?"	"It compiles a list of heavily used PHP classes that Opcache should preload into memory when the server starts to eliminate runtime disk I/O."
+"What is the purpose of the container.preload tag in the compiled container?"	"It compiles a list of heavily used PHP classes that Opcache should preload into memory when the server starts to eliminate runtime disk I/O."
 "Look at this architectural container setup utilizing a Service Locator for heavy reporting engines:
 
 namespace App\Report;

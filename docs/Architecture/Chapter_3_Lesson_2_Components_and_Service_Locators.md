@@ -70,7 +70,7 @@
 
   **Answer:** A lightweight PSR-11 container wrapper that provides access to a strictly restricted, pre-defined subset of services to maintain isolation.
 
-- **Question:** What is the purpose of the `container.preload` parameter generated during container compilation?
+- **Question:** What is the purpose of the `container.preload` tag in the compiled container?
 
   **Answer:** It compiles a list of heavily used PHP classes that Opcache should preload into memory when the server starts to eliminate runtime disk I/O.
 

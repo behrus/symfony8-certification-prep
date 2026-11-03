@@ -29,14 +29,14 @@ When `$kernel->handle($request)` initiates, the application triggers a sequentia
 ## 3. Exception Handling Structures
 * **The Emergency Airbag:** Uncaught application failures stop processing instantly and launch **`kernel.exception`**.
 * **Sub-Request Errors:** The internal `ErrorListener` intercepts the failure and kicks off an internal isolated **Sub-Request** directed at an error rendering controller. This creates a formatted error response page and passes it directly down to `kernel.response`.
-* **Cascading Failures:** If a custom listener throws an exception *inside* the `kernel.exception` sequence, Symfony aborts to block infinite recursive loop traps and exposes the failure as a raw, primitive PHP error.
+* **Cascading Failures:** If a custom listener throws an exception *inside* the `kernel.exception` sequence, that exception is not caught again and propagates out of the kernel (see `HttpKernel::handleThrowable()`), so no error page is rendered.
 * **Errors During Terminate:** Exceptions thrown inside the post-send `kernel.terminate` cycle are quietly trapped by the `ErrorHandler` and piped to server logs. They cannot output an HTML error page because client data streams are already shut down.
 
 ---
 
 ## 4. Technical Engine Settings
 * **Event Dispatcher Priorities:** Configured as integer markers. **Higher positive numbers execute first**. To enforce a execution sequence as the absolute final step, use high negative values (e.g., `-255`).
-* **Sub-Request Isolation:** Inside a listener method, always query **`$event->isMainRequest()`** to check whether you are handling the primary browser entry or an internal loop (Symfony versions prior to 5.2 used `isMasterRequest()`).
+* **Sub-Request Isolation:** Inside a listener method, always query **`$event->isMainRequest()`** to check whether you are handling the primary browser entry or an internal loop (Symfony versions prior to 5.3 used `isMasterRequest()`).
 
 ## 🧠 Exam Flashcards
 - **Question:** Which design pattern does the Symfony `HttpKernel` component primarily implement to handle a Request?
@@ -67,7 +67,7 @@ class EarlyMaintenanceSubscriber implements EventSubscriberInterface {
         return [KernelEvents::REQUEST => ['onKernelRequest', 512]];
     }
 
-    public function onKernelRequest(RequestEvent \$event): void {
+    public function onKernelRequest(RequestEvent $event): void {
         // Condition checking
     }
 }
@@ -78,7 +78,7 @@ class EarlyMaintenanceSubscriber implements EventSubscriberInterface {
 
 - **Question:** During the `HttpKernel` lifecycle, if a listener assigned to the `KernelEvents::CONTROLLER` event replaces the controller completely, what specific PHP type validation does Symfony enforce on the object passed into `$event->setController()`?
 
-  **Answer:** Symfony enforces that the value must be a valid PHP **`callable`** (an anonymous function, an instance of an invokable class, or an array mapping `[$instance, 'method']`). If a non-callable is passed, a `TypeError` or `InvalidArgumentException` is thrown immediately.
+  **Answer:** Symfony enforces that the value must be a valid PHP **`callable`** (an anonymous function, an instance of an invokable class, or an array mapping `[$instance, 'method']`). If a non-callable is passed, a `TypeError` is thrown immediately.
 
 ---
 Licensed under the [MIT License](../../LICENSE).
