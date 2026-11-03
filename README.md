@@ -1,19 +1,19 @@
-# 🚀 Symfony 8 Certification – Flashcards, Notes and Sandbox
+# Symfony 8 Certification – Flashcards, Notes and Sandbox
 
-**Status:** 🛠️ In Progress  
+**Status:** In Progress  
 **Target:** Symfony 8.0 / PHP 8.4
 
 > Personal study repository for the Symfony 8 certification exam. It is a work in progress and not meant as a production project.
 
 This sandbox runs on **Ubuntu 24.04** with **PHP 8.4+** and **Symfony 8.0.x** inside a **FrankenPHP** containerized environment. It serves as a hands-on tracker for digging into framework internals.
 
-> ⚠️ **Version and security note:** The exam covers only Symfony 8.0, so all `symfony/*` packages are pinned to `8.0.*` (not 8.1). Symfony 8.0 is end of life and Composer blocks it because of known security advisories (denial of service in `symfony/yaml` and `symfony/http-foundation`). Six advisory IDs are therefore listed under `policy.advisories.ignore-id` in `composer.json`. This is acceptable only for a local study sandbox: the ports are bound to `127.0.0.1`, and the code must never be deployed.
+> **Version and security note:** The exam covers only Symfony 8.0, so all `symfony/*` packages are pinned to `8.0.*` (not 8.1). Symfony 8.0 is end of life and Composer blocks it because of known security advisories (denial of service in `symfony/yaml` and `symfony/http-foundation`). Six advisory IDs are therefore listed under `policy.advisories.ignore-id` in `composer.json`. This is acceptable only for a local study sandbox: the ports are bound to `127.0.0.1`, and the code must never be deployed.
 
 ---
 
-## 🧠 Study Strategy
+## Study Strategy
 
-The preparation is built around **Anki flashcards** (spaced repetition), because the exam is an English multiple-choice test that rewards exact knowledge of framework behaviour.
+The preparation is built around **Anki flashcards** (spaced repetition), because the exam is an English multiple-choice test that rewards exact knowledge of framework behaviour. Structured around the 14 core topics from the `sfcelearning.com` curriculum.
 
 1. **Flashcards (`_ANKI_CARD.txt`):** Each lecture has a tab-separated card file in the `Anki_Cards/` folder of its topic, ready for bulk import into Anki.
 2. **Short notes (`.md`):** Lectures with flows or easily confused topics get a one-page note that links to its cards. Older notes in this repository are longer; new ones are kept short.
@@ -22,65 +22,18 @@ The preparation is built around **Anki flashcards** (spaced repetition), because
 
 ---
 
-## 📅 Progress Tracker & Master Plan
+## What is in this repository
 
-Structured around the 14 core topics from the `sfcelearning.com` curriculum.
-
-### 🏛️ Weeks 1 & 2: Core Foundations & Infrastructure
-
-#### 🏗️ Architecture & HttpKernel Lifecycle (SFCE Topic 3)
-* [x] **HTTP Foundation & Flex**
-    * 📑 Docs: [Chapter_1_Lesson_1_HTTP_Foundation_Flex_Licensing.md](docs/Architecture/Chapter_1_Lesson_1_HTTP_Foundation_Flex_Licensing.md)
-    * 🎴 Flashcards: [%20Chapter_1_Lesson_1_HTTP_Foundation_Flex_Licensing_ANKI_CARD.txt%20](docs/Architecture/Anki_Cards/%20Chapter_1_Lesson_1_HTTP_Foundation_Flex_Licensing_ANKI_CARD.txt%20)
-* [x] **Configuration Hierarchy**
-    * 📑 Docs: [Chapter_1_Lesson_2_Environment_Variables _Configuration_Hierarchy.md](docs/Architecture/Chapter_1_Lesson_2_Environment_Variables%20_Configuration_Hierarchy.md)
-    * 🎴 Flashcards: [Chapter_1_Lesson_2_Environment_Variables_Configuration_Hierarchy_ANKI_CARD.txt](docs/Architecture/Anki_Cards/Chapter_1_Lesson_2_Environment_Variables_Configuration_Hierarchy_ANKI_CARD.txt)
-* [x] **Invokable Architecture & SOLID**
-    * 📑 Docs: [Chapter_2_Lesson_1_Invokable_Architecture_and_SOLID.md](docs/Architecture/Chapter_2_Lesson_1_Invokable_Architecture_and_SOLID.md)
-    * 🎴 Flashcards: [Chapter_2_Lesson_1_Invokable_Architecture_and_SOLID_ANKI_CARD.txt](docs/Architecture/Anki_Cards/Chapter_2_Lesson_1_Invokable_Architecture_and_SOLID_ANKI_CARD.txt)
-* [x] **HttpKernel Lifecycle & Core Events**
-    * 📑 Docs: [Chapter_3_Lesson_1_HttpKernel_Lifecycles_Events_Exceptions.md](docs/Architecture/Chapter_3_Lesson_1_HttpKernel_Lifecycles_Events_Exceptions.md)
-    * 🎴 Flashcards: [Chapter_3_Lesson_1_HttpKernel_Lifecycles_Events_Exceptions_ANKI_CARD.txt](docs/Architecture/Anki_Cards/Chapter_3_Lesson_1_HttpKernel_Lifecycles_Events_Exceptions_ANKI_CARD.txt)
-* [x] **Components & Service Locators**
-    * 📑 Docs: [Chapter_3_Lesson_2_Components_and_Service_Locators.md](docs/Architecture/Chapter_3_Lesson_2_Components_and_Service_Locators.md)
-    * 🎴 Flashcards: [Chapter_3_Lesson_2_Components_and_Service_Locators_ANKI_CARD.txt](docs/Architecture/Anki_Cards/Chapter_3_Lesson_2_Components_and_Service_Locators_ANKI_CARD.txt)
-* [x] **Exam Reference Sheets**
-    * 📜 Cheatsheet: [exam-cheatsheet-architecture.md](docs/Architecture/exam-cheatsheet-architecture.md)
-* [x] **Sandbox Verification**
-    * 💻 Code: `SpyController.php` | `SpySubscriber.php`
-
-#### ⚡ Dependency Injection & Container Compilation (SFCE Topic 9)
-* [x] **Dependency Injection Component Basics**
-    * 📑 Docs: [Chapter1_Lesson1-Dependency_Injection_Component.md](docs/DependencyInjection/Chapter1_Lesson1-Dependency_Injection_Component.md)
-    * 🎴 Flashcards: [Chapter1_Lesson1-Dependency_Injection_Component_ANKI_CARD.txt](docs/DependencyInjection/Anki_Cards/Chapter1_Lesson1-Dependency_Injection_Component_ANKI_CARD.txt)
-* [x] **Container Lifecycle & Compiler Phases**
-    * 📑 Docs: [Chapter1-Lesson3-Container_Lifecycle_&_Phases.md](docs/DependencyInjection/Chapter1-Lesson3-Container_Lifecycle_&_Phases.md)
-    * 🎴 Flashcards: [Chapter1-Lesson3-Container_Lifecycle_&_Phases_ANKI_CARD.txt](docs/DependencyInjection/Anki_Cards/Chapter1-Lesson3-Container_Lifecycle__Phases_ANKI_CARD.txt)
-* [x] **Service Container Basics (Sandbox State)**
-    * 📑 Docs: [Chapter2-Lesson1_Service_Container.md](docs/DependencyInjection/Chapter2-Lesson1_Service_Container.md)
-    * 🎴 Flashcards: [Chapter2-Lesson1_Service_Container_ANKI_CARD.txt](docs/DependencyInjection/Anki_Cards/Chapter2-Lesson1_Service_Container_ANKI_CARD.txt)
-    * 📜 Context-Docs: [Interface_aliasing _in_Symfony.md](docs/DependencyInjection/Interface_aliasing%20_in_Symfony.md) | [Service_container.md](docs/DependencyInjection/Service_container.md)
-    * 🔬 Manager: `InvoiceManager.php`
-    * 💻 Implementations: `InvoiceFormatterInterface.php` | `PdfInvoiceFormatter.php` | `HtmlInvoiceFormatter.php`
-* [ ] **EventDispatcher & Core Events (SFCE Topic 11)**
-
-### ⚙️ Weeks 3 & 4: HTTP & Application Logic
-* [ ] Advanced Routing & Edge Cases (SFCE Topic 5)
-* [ ] Controller Utility & Argument Resolvers (SFCE Topic 4)
-* [ ] Configuration & Secrets System (SFCE Topic 2)
-
-### 🔐 Week 5: Enterprise Features
-* [ ] Security Deep-Dive (SFCE Topic 10)
-* [ ] Messenger, Workflow & Cache-Pools (SFCE Topics 10, 14)
-
-### 🔍 Week 6: Testing & Tooling
-* [ ] WebTestCase & Profiler Tests (SFCE Topic 13)
-* [ ] Console Commands & CLI Flags (SFCE Topic 12)
-* [ ] Mock-Exam Simulations
+* [`docs/Architecture`](docs/Architecture): HttpFoundation, HttpKernel, Flex, configuration
+* [`docs/DependencyInjection`](docs/DependencyInjection): container, autowiring, service tags
+* [`docs/Security`](docs/Security): firewall, authenticators, voters
+* [`docs/DataValidation`](docs/DataValidation): validator constraints
+* [`docs/Miscellaneous`](docs/Miscellaneous): serializer context
+* [`src/`](src): sandbox code that is used to verify the behaviour
 
 ---
 
-## 💻 Environment
+## Environment
 
 * **OS:** Ubuntu 24.04 LTS
 * **Engine:** PHP 8.4+ (FrankenPHP Docker Container)
@@ -90,7 +43,7 @@ Structured around the 14 core topics from the `sfcelearning.com` curriculum.
 
 ---
 
-## 🛠️ Local Setup
+## Local Setup
 
 ```bash
 # 1. Clone & Navigate
@@ -107,11 +60,11 @@ docker compose exec web composer install
 docker compose exec web php bin/console doctrine:database:create
 ```
 
-App is available at 👉 http://localhost
+App is available at http://localhost
 
 ---
 
-## 👤 Profile
+## Profile
 
 * **Name:** Behrouz Heidarzadeh
 * **Role:** Senior Backend Engineer
