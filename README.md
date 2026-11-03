@@ -3,7 +3,7 @@
 **Status:** 🛠️ In Progress  
 **Target:** Symfony 8.0 / PHP 8.4
 
-> 💡 **Note for Tech-Leads & Recruiters:** This repository is my personal sandbox for the upcoming Symfony 8 certification exam. Working on this alongside my full-time job, so commits happen in focused bursts rather than daily updates. It's used purely to verify framework edge cases, compiler passes, and modern PHP 8.4 features.
+> Personal study repository for the Symfony 8 certification exam. It is a work in progress and not meant as a production project.
 
 This sandbox runs on **Ubuntu 24.04** with **PHP 8.4+** and **Symfony 8.0.x** inside a **FrankenPHP** containerized environment. It serves as a hands-on tracker for digging into framework internals.
 
@@ -84,7 +84,7 @@ Structured around the 14 core topics from the `sfcelearning.com` curriculum.
 
 * **OS:** Ubuntu 24.04 LTS
 * **Engine:** PHP 8.4+ (FrankenPHP Docker Container)
-* **Framework:** Symfony 8.x (Skeleton)
+* **Framework:** Symfony 8.0.x (Skeleton)
 * **Database:** PostgreSQL 16
 * **IDE:** PhpStorm
 
