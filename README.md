@@ -20,6 +20,8 @@ The preparation is built around **Anki flashcards** (spaced repetition), because
 3. **Sandbox:** Unclear behaviour is tried in the Symfony 8.0 sandbox of this repository, and the result goes back into a card.
 4. **Practice questions:** Questions in exam format show gaps that cards alone do not. So far there is a quiz for Dependency Injection; more are added per topic.
 
+Flashcards were drafted with Claude and checked against the Symfony 8.0 source code.
+
 ---
 
 ## What is in this repository
