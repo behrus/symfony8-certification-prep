@@ -38,7 +38,7 @@ The preparation is built around **Anki flashcards** (spaced repetition), because
 * **OS:** Ubuntu 24.04 LTS
 * **Engine:** PHP 8.4+ (FrankenPHP Docker Container)
 * **Framework:** Symfony 8.0.x (Skeleton)
-* **Database:** PostgreSQL 16
+* **Database:** PostgreSQL 16 (container is running, the application does not use it yet)
 * **IDE:** PhpStorm
 
 ---
@@ -47,7 +47,7 @@ The preparation is built around **Anki flashcards** (spaced repetition), because
 
 ```bash
 # 1. Clone & Navigate
-git clone https://github.com
+git clone https://github.com/behrus/symfony8-certification-prep.git
 cd symfony8-certification-prep
 
 # 2. Spin up containers (compiles custom FrankenPHP image with pdo_pgsql)
@@ -55,9 +55,6 @@ docker compose up -d --build
 
 # 3. Install dependencies inside container
 docker compose exec web composer install
-
-# 4. Setup DB
-docker compose exec web php bin/console doctrine:database:create
 ```
 
 App is available at http://localhost
@@ -68,4 +65,4 @@ App is available at http://localhost
 
 * **Name:** Behrouz Heidarzadeh
 * **Role:** Senior Backend Engineer
-* **LinkedIn:** [Behrouz Heidarzadeh](https://linkedin.com)
+* **LinkedIn:** [Behrouz Heidarzadeh](https://www.linkedin.com/in/behrouz-heidarzadeh-927a87282/)
