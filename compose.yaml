@@ -2,9 +2,9 @@ services:
   web:
     build: .
     ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
+      - "127.0.0.1:443:443/udp"
     volumes:
       - .:/app
       - caddy_data:/data
@@ -22,7 +22,7 @@ services:
       POSTGRES_USER: symfony_user
       POSTGRES_PASSWORD: symfony_password
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
 

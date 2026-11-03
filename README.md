@@ -1,20 +1,24 @@
-# 🚀 Symfony 8 Certified Developer – Preparation Sandbox
+# 🚀 Symfony 8 Certification – Flashcards, Notes and Sandbox
 
 **Status:** 🛠️ In Progress  
-**Target:** Symfony 8.0+ / PHP 8.4+
+**Target:** Symfony 8.0 / PHP 8.4
 
 > 💡 **Note for Tech-Leads & Recruiters:** This repository is my personal sandbox for the upcoming Symfony 8 certification exam. Working on this alongside my full-time job, so commits happen in focused bursts rather than daily updates. It's used purely to verify framework edge cases, compiler passes, and modern PHP 8.4 features.
 
-This sandbox runs on **Ubuntu 24.04** with **PHP 8.4+** and **Symfony 8.x** inside a **FrankenPHP** containerized environment. It serves as a hands-on tracker for digging into framework internals.
+This sandbox runs on **Ubuntu 24.04** with **PHP 8.4+** and **Symfony 8.0.x** inside a **FrankenPHP** containerized environment. It serves as a hands-on tracker for digging into framework internals.
+
+> ⚠️ **Version and security note:** The exam covers only Symfony 8.0, so all `symfony/*` packages are pinned to `8.0.*` (not 8.1). Symfony 8.0 is end of life and Composer blocks it because of known security advisories (denial of service in `symfony/yaml` and `symfony/http-foundation`). Six advisory IDs are therefore listed under `policy.advisories.ignore-id` in `composer.json`. This is acceptable only for a local study sandbox: the ports are bound to `127.0.0.1`, and the code must never be deployed.
 
 ---
 
-## 🧠 Anki Spaced Repetition Workflow
+## 🧠 Study Strategy
 
-To internalize complex framework internals, compiler exceptions, and strict CLI flags for the English multiple-choice exam, this repository utilizes a **dual-documentation system**:
+The preparation is built around **Anki flashcards** (spaced repetition), because the exam is an English multiple-choice test that rewards exact knowledge of framework behaviour.
 
-1. **The Core Concepts (`.md`):** Detailed architectural write-ups inside the respective subfolders of `docs/`.
-2. **The Anki Flashcards (`_ANKI_CARD.txt`):** Every single lesson includes a dedicated, tab-separated flashcard file inside its local `Anki_Cards/` subfolder, ready for bulk-import into the Anki Software.
+1. **Flashcards (`_ANKI_CARD.txt`):** Each lecture has a tab-separated card file in the `Anki_Cards/` folder of its topic, ready for bulk import into Anki.
+2. **Short notes (`.md`):** Lectures with flows or easily confused topics get a one-page note that links to its cards. Older notes in this repository are longer; new ones are kept short.
+3. **Sandbox:** Unclear behaviour is tried in the Symfony 8.0 sandbox of this repository, and the result goes back into a card.
+4. **Practice questions:** Questions in exam format show gaps that cards alone do not. So far there is a quiz for Dependency Injection; more are added per topic.
 
 ---
 
