@@ -22,7 +22,7 @@
 When multiple classes implement the same interface, Symfony's automatic type-hinting is disabled due to ambiguity. In Symfony 8.0, we solve this elegantly using a decentralized, attribute-driven approach without touching the `services.yaml` file.
 
 * **Mechanism:** Each concrete implementation declares a unique string alias via the `#[AsAlias]` attribute. The consumer type-hints the interface and selects the specific service using the `#[Target]` attribute.
-* **⚠️ Golden Rule for the Exam:** When using the `#[Target('my_alias')]` attribute, the corresponding service class **must** be explicitly assigned a matching string alias using `#[AsAlias(id: 'my_alias')]`. Otherwise, the container compilation will fail with a `DefinitionErrorException`, as a target cannot resolve a pure FQCN class during interface autowiring.
+* **⚠️ Golden Rule for the Exam:** When using the `#[Target('my_alias')]` attribute, the corresponding service **must** be registered as a *named autowiring alias* with the id `InterfaceName $myAlias` (the target name is converted to camelCase; a plain alias `my_alias` is not enough). Otherwise, the container compilation fails with a `RuntimeException` ("has `#[Target('my_alias')]` but no such target exists"), as a target cannot resolve a pure FQCN class during interface autowiring.
 * **Advantage:** Complete independence from the internal variable names of the consumer class, making it fully refactoring-safe.
 
 #### Practice Matrix of Involved Components:
@@ -45,15 +45,15 @@ If a private service (`public: false`) or an interface alias is **not** actively
 
 - **Question:** When using the `#[Target('invoice_pdf')]` attribute to resolve an ambiguous interface implementation, what must the target class declare?
 
-  **Answer:** The target class must explicitly be assigned a matching string alias using the attribute `#[AsAlias(id: 'invoice_pdf')]`. Otherwise, compilation fails with a `DefinitionErrorException`.
+  **Answer:** The target must be registered as a named autowiring alias with the id `InterfaceName $invoicePdf` (the name is converted to camelCase; a plain alias `invoice_pdf` is not enough). Otherwise, compilation fails with a `RuntimeException`.
 
 - **Question:** Why might a correctly configured private service disappear from `debug:container <Service-ID>` even though `cache:clear` runs without errors?
 
   **Answer:** The `RemoveUnusedDefinitionsPass` removed it. If a private service is not injected into any active framework entry point (like a Controller or Command), Symfony purges it from the compiled container during optimization.
 
-- **Question:** What three configuration keys are applied by default under the `_defaults:` block in a standard Symfony `services.yaml`?
+- **Question:** What two configuration keys are set by default under the `_defaults:` block in a standard Symfony `services.yaml`?
 
-  **Answer:** `autowire: true` (resolves dependencies via reflection), `autoconfigure: true` (automatically adds tags based on class hierarchy), and `public: false` (makes services private by default).
+  **Answer:** `autowire: true` (resolves dependencies via reflection) and `autoconfigure: true` (automatically adds tags based on class hierarchy). Services are private by default, so `public: false` is not needed.
 
 Look at this service class constructor utilizing a core DI attribute:
 ```php
@@ -70,7 +70,7 @@ class OrderManager {
 ```
 - **Question:** What determines whether this dependency autowires successfully: the attribute string argument `'localLogger'` or the native PHP variable name `$appLogger`?
 
-  **Answer:** The attribute string **`'localLogger'`** determines success. **Reason:** The `#[Target]` attribute explicitly instructs the compiler pass to look for a registered service or alias with the exact ID `localLogger`. Once `#[Target]` is explicitly defined, the actual variable name (`$appLogger`) is completely ignored by the container's dependency resolution mechanics.
+  **Answer:** The attribute string **`'localLogger'`** determines success. **Reason:** The `#[Target]` attribute explicitly instructs the compiler pass to look for the named autowiring alias `Psr\Log\LoggerInterface $localLogger`. Once `#[Target]` is explicitly defined, the actual variable name (`$appLogger`) is completely ignored by the container's dependency resolution mechanics.
 
 ---
 Licensed under the [MIT License](../../LICENSE).

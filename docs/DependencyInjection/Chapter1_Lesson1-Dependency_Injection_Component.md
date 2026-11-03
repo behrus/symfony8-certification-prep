@@ -38,7 +38,7 @@ class AnalyticsService {
 ```
 - **Question:** What happens when Symfony attempts to compile the service container?
 
-  **Answer:** The container compilation will **fail** and throw a `DependencyInjectionException` (or `RuntimeError`). **Reason:** The explicit `autowire: false` declaration in `services.yaml` completely disables the framework's automatic type-hint resolution for this specific service. Symfony will not attempt to guess or inject the `ChainRequestMatcher` dependency, leaving it unresolvable.
+  **Answer:** The container compilation **succeeds**, but creating the service later fails with an `ArgumentCountError` (too few arguments). **Reason:** The explicit `autowire: false` declaration in `services.yaml` completely disables the framework's automatic type-hint resolution for this specific service. Symfony will not attempt to guess or inject the `ChainRequestMatcher` dependency, so the constructor is called without it. (An unused private service is removed during compilation and never fails.)
 
 - **Question:** True or False: If a service class contains no PHP attributes but has clear type-hints in its constructor, setting `autowire: true` (or relying on `_defaults: autowire: true`) in `services.yaml` is fully sufficient for Symfony to register and resolve its dependencies.
 

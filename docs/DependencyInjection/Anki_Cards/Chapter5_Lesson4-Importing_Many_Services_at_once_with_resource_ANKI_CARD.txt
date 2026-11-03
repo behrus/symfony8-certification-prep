@@ -1,1 +1,1 @@
-"What does the entry 'App\': resource: '../src/'' in services.yaml do?"	"It registers every class found in src/ as a service. The service id is the fully qualified class name."
+"What does the entry 'App\': resource: '../src/'' in services.yaml do?"	"It registers every class found in src/ as a service, except the paths listed under exclude (in the skeleton: Entity, Tests and Kernel.php). The service id is the fully qualified class name."
