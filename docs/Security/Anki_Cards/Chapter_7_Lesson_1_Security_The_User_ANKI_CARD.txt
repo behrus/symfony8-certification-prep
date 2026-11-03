@@ -1,0 +1,1 @@
+"Which method was removed from UserInterface in Symfony 8.0, and what does the CHANGELOG recommend instead?"	"eraseCredentials() (deprecated since 7.3). Reason: erasing credentials on the user object was unreliable. The CHANGELOG recommends erasing sensitive data in __serialize() instead. The interface no longer requires the method."

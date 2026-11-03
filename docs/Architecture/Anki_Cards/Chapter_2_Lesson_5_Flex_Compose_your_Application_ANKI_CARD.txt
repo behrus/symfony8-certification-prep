@@ -1,0 +1,1 @@
+"What are symfony.lock and the command composer recipes for?"	"symfony.lock records which recipe version of each package was applied. composer recipes lists installed recipes and shows available updates; composer recipes:update <package> applies an update."

@@ -1,0 +1,1 @@
+"What does the Valid constraint do on a property that holds an object or a collection, and what is the default of its traverse option?"	"It cascades validation into the nested object or into every item of the collection. traverse defaults to true, so Traversable values are iterated."

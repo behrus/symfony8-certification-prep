@@ -1,0 +1,1 @@
+"Which passport class do you return from authenticate() when there are no credentials to check (for example API token authentication), and which badge does its constructor require?"	"SelfValidatingPassport. Its constructor requires a UserBadge; further badges are optional. Reason: the class is made for cases where no credentials are checked, so no credentials badge is needed."

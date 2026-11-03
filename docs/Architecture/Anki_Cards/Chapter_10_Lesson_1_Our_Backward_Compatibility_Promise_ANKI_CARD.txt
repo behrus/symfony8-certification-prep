@@ -1,0 +1,1 @@
+"Why is the last minor version of a major (for example 7.4) the best starting point for an upgrade to the next major (8.0)?"	"7.4 contains all deprecation notices of the 7.x line. If the application runs on 7.4 without deprecations, it can move to 8.0, because 8.0 is 7.4 without the deprecated code (Backward Compatibility Promise)."

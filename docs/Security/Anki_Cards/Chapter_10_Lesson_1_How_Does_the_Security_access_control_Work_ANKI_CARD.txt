@@ -1,0 +1,1 @@
+"Several access_control rules match the same request. Which rule is applied?"	"Only the first matching rule. Reason: the rules are checked in the order they are written and matching stops at the first hit."

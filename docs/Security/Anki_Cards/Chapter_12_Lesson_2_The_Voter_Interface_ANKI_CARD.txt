@@ -1,0 +1,1 @@
+"What was added to VoterInterface::vote() and Voter::voteOnAttribute() in Symfony 8.0?"	"A new $vote argument. Related changes: 7.3 added the ability for voters to explain their vote, and 7.4 added the extraData property to Vote objects."

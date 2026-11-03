@@ -1,0 +1,1 @@
+"What does a firewall with security: false do, and what is a typical use?"	"No authentication runs and no token exists for URLs matching that firewall. Typical use: the dev firewall for the profiler and assets. Reason: the option security defaults to true; false switches the firewall off."

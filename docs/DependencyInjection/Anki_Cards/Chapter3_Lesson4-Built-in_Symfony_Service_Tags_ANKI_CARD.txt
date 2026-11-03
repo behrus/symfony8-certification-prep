@@ -1,0 +1,2 @@
+"Which tag puts a service into a specific Monolog channel, and which option names the channel?"	"The tag monolog.logger with the option channel, for example { name: monolog.logger, channel: request_log }."
+"How can a listener for kernel.terminate be registered with a tag, and what is the attribute alternative?"	"Tag kernel.event_listener with the options event: kernel.terminate and method: onKernelTerminate. Alternative: the #[AsEventListener] attribute on the class or method."

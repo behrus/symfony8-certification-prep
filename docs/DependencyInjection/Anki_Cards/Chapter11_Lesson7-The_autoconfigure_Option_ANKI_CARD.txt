@@ -1,0 +1,1 @@
+"What do autowire: true and autoconfigure: true under _defaults do in services.yaml?"	"autowire injects constructor arguments by type. autoconfigure adds tags automatically based on interfaces or attributes (for example event subscribers and commands)."

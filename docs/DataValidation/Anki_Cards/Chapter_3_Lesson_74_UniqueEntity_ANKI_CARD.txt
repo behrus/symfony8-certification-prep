@@ -1,0 +1,1 @@
+"Which component or bridge provides the UniqueEntity constraint, and how is it used on a class?"	"The Doctrine Bridge: Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity. It is a class constraint with the option fields, for example #[UniqueEntity(fields: ['email'])]."

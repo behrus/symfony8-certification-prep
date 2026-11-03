@@ -1,0 +1,1 @@
+"Which Symfony version does the Symfony 8 certification exam cover?"	"Only Symfony 8.0. Versions 8.1 to 8.4 are excluded (official exam page). Features that are new in 8.1 are not exam material."

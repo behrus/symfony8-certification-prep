@@ -1,0 +1,2 @@
+"Which Request method was deprecated in 7.4 and removed in 8.0, and what replaces it?"	"Request::get(). Use the properties attributes, query or request directly (for example $request->query->get('page'))."
+"In which order did Request::get() look for a value, and why is that a problem?"	"attributes (route parameters), then query (GET), then request (POST body). Problem: the caller cannot tell where the value came from, so a client could override a route parameter with a query parameter."

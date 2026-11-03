@@ -1,0 +1,2 @@
+"Which four methods must a custom authenticator that extends AbstractAuthenticator implement?"	"supports(), authenticate(), onAuthenticationSuccess() and onAuthenticationFailure(). supports() decides whether the authenticator runs for the request; authenticate() returns a Passport."
+"An authenticator's onAuthenticationSuccess() returns null. What happens?"	"The request continues normally to the controller. Only a Response replaces the normal flow (for example a redirect or a JSON body)."

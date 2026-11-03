@@ -1,0 +1,1 @@
+"What does the entry 'App\': resource: '../src/'' in services.yaml do?"	"It registers every class found in src/ as a service. The service id is the fully qualified class name."

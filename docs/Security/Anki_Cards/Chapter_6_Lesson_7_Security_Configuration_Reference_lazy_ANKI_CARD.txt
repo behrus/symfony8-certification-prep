@@ -1,0 +1,1 @@
+"What does lazy: true on a firewall change? What is the default?"	"Authentication (and starting the session) is postponed until the application asks for the user or runs an authorization check. The default is false."
